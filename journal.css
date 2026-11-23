@@ -1,0 +1,405 @@
+/* ==========================================================
+   journal.css — estilos compartidos de todas las pantallas
+   Base de diseño: marco móvil de 402px de ancho (Figma)
+   ========================================================== */
+
+/* ---------- Fuentes ----------
+   Apple Garamond: archivo local en assets/fonts.
+   Lullabies: Adobe Fonts (Typekit), cargado con un <link> en el <head> de cada página. */
+@font-face {
+  font-family: 'Apple Garamond';
+  src: url('assets/fonts/AppleGaramond.ttf') format('truetype');
+  font-display: swap;
+}
+
+/* ---------- Variables de color y fuentes ---------- */
+:root {
+  --ink: #141414;
+  --paper: #efe9e1;
+  --teal: #3f5a55;
+  --teal-dark: #26393b;
+  --grey-panel: #d9d9d9;
+  --font-body: 'Apple Garamond', 'EB Garamond', Garamond, serif;
+  --font-title: 'lullabies-text', sans-serif;
+  --font-title-fill: 'lullabies-regular-fill', sans-serif;
+}
+
+/* ---------- Reset mínimo ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  background: #fff;
+}
+
+/* ---------- Marco de pantalla ----------
+   Todo se posiciona de forma absoluta dentro de .screen para respetar
+   el diseño original; journal.js escala el marco al ancho del teléfono. */
+.screen {
+  position: relative;
+  flex: none;
+  width: 402px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.a {
+  position: absolute;
+}
+
+/* ---------- Imágenes ---------- */
+.pic {
+  position: absolute;
+  max-width: none;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* .clip recorta una imagen con porcentajes (así exporta Figma los recortes) */
+.clip {
+  position: absolute;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.clip img {
+  position: absolute;
+  max-width: none;
+}
+
+/* .rot centra un elemento rotado dentro de su caja envolvente,
+   que es el tamaño que ocupa en el layout después de rotar */
+.rot {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.rot div {
+  position: relative;
+  flex: none;
+}
+
+.rot img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+
+/* ---------- Barras superior e inferior ---------- */
+.bar {
+  position: absolute;
+  left: 0;
+  width: 402px;
+  height: 45px;
+  background: var(--ink);
+}
+
+/* ---------- Botones de icono (hamburguesa, lupa, tienda) ---------- */
+.icon {
+  position: absolute;
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.icon img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}
+
+.icon.search img {
+  left: 4px;
+  top: 4px;
+  width: 20px;
+  height: 20px;
+}
+
+.icon.shop img {
+  object-fit: cover;
+}
+
+/* ---------- Tipografía ---------- */
+.t {
+  position: absolute;
+  transform: translateX(-50%);
+  text-align: center;
+  word-break: break-word;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: normal;
+}
+
+.h {
+  font-family: var(--font-title);
+  font-weight: 200;
+  font-size: 14px;
+}
+
+.hf {
+  font-family: var(--font-title-fill);
+  font-weight: 500;
+}
+
+.dark {
+  color: var(--ink);
+}
+
+.light {
+  color: var(--paper);
+}
+
+/* ---------- Botón "Explore" ---------- */
+.btn {
+  position: absolute;
+  display: block;
+  width: 112px;
+  height: 25px;
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--teal-dark);
+  border: 1px solid #fff;
+  border-radius: 7px;
+}
+
+.btn span {
+  position: absolute;
+  left: 10px;
+  right: 15px;
+  top: 5px;
+  bottom: 6px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  line-height: 1.3;
+  text-align: center;
+  color: #fff;
+}
+
+/* Flecha dibujada con pseudo-elemento: rotada y espejada como en Figma */
+.btn::after {
+  content: "";
+  position: absolute;
+  left: 86.3px;
+  top: 10.48px;
+  width: 5.5px;
+  height: 4.39px;
+  background: url('assets/journal/arrow.svg') center / 100% 100% no-repeat;
+  transform-origin: 50% 54.5%;
+  transform: rotate(35.21deg) scaleX(-1);
+}
+
+/* Variante translúcida (Explore the journal / Explore BWG) */
+.btn.soft::before {
+  background: var(--ink);
+  opacity: .5;
+}
+
+.btn.soft span {
+  left: 3px;
+}
+
+.btn.soft::after {
+  left: 93.3px;
+}
+
+/* ---------- Botón "Read the story" ---------- */
+.read {
+  position: absolute;
+  display: block;
+  width: 156px;
+  height: 35px;
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.read::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--teal-dark);
+  border: 1.6px solid #fff;
+  border-radius: 11.2px;
+}
+
+.read span {
+  position: absolute;
+  left: 19.16px;
+  right: 30.64px;
+  top: 7px;
+  bottom: 8.75px;
+  font-family: var(--font-body);
+  font-size: 17.6px;
+  line-height: 1.3;
+  white-space: nowrap;
+  text-align: center;
+  color: #fff;
+}
+
+.read img {
+  position: absolute;
+  max-width: none;
+}
+
+.read .star {
+  left: 10.45px;
+  top: 10.5px;
+  width: 12.18px;
+  height: 14px;
+}
+
+.read .book {
+  left: 121.9px;
+  top: 7px;
+  width: 20.9px;
+  height: 21px;
+}
+
+/* ---------- Etiquetas de personajes ---------- */
+.name {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  word-break: break-word;
+  font-family: var(--font-title-fill);
+  font-weight: 500;
+  font-size: 14px;
+  color: #000;
+}
+
+/* ---------- Panel con texto introductorio ---------- */
+.panel {
+  position: absolute;
+  transform: translateX(-50%);
+  background: var(--teal);
+  opacity: .8;
+  border-radius: 23px;
+}
+
+.panel.grey {
+  background: var(--grey-panel);
+}
+
+.lead {
+  position: absolute;
+  transform: translateX(-50%);
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+/* ---------- Bloques de biografía (Behind Black Willow) ---------- */
+.bio-title {
+  position: absolute;
+  font-family: var(--font-title-fill);
+  font-weight: 500;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: .02em;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.bio {
+  position: absolute;
+  font-family: var(--font-body);
+  font-size: 19px;
+  line-height: 23px;
+  text-align: justify;
+  color: var(--ink);
+}
+
+.bio p + p {
+  margin-top: 23px;
+}
+
+/* ---------- Píldoras de título y videos (The Art of Making) ---------- */
+.pill {
+  position: absolute;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 335px;
+  height: 72px;
+  padding: 0 24px;
+  background: var(--teal);
+  border-radius: 23px;
+  text-align: center;
+  font-family: var(--font-title-fill);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.3;
+  letter-spacing: .03em;
+  color: var(--paper);
+}
+
+/* Marco con la imagen fija del video ya incluida (un solo PNG por video) */
+.frame {
+  position: absolute;
+}
+
+.frame .still {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}
+
+/* El GIF se coloca sobre la ventana interior del marco al pulsar play */
+.frame .gif {
+  position: absolute;
+  left: 13.4%;
+  top: 15.4%;
+  width: 72.5%;
+  height: 69.2%;
+  max-width: none;
+  object-fit: cover;
+}
+
+.play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 64px;
+  height: 64px;
+  transform: translate(-50%, -50%);
+  border: 0;
+  padding: 0;
+  background: url('assets/journal/play.svg') center / 100% 100% no-repeat;
+  cursor: pointer;
+  z-index: 3;
+}
