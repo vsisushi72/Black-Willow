@@ -1,17 +1,17 @@
-/* journal.js — escala el marco de diseño (402px) al ancho real del teléfono */
+/* journal.js — escala cada pantalla (móvil 402px / escritorio 1440px) al ancho real del navegador */
 (() => {
-  const BASE_WIDTH = 402;
-  const MOBILE_MAX = 768;
-  const screen = document.getElementById('screen');
-
-  if (!screen) return;
+  const screens = document.querySelectorAll('.screen');
+  if (!screens.length) return;
 
   let pending = false;
 
   const fit = () => {
     pending = false;
     const width = window.innerWidth;
-    screen.style.zoom = width <= MOBILE_MAX ? width / BASE_WIDTH : 1;
+    screens.forEach((screen) => {
+      const design = Number(screen.dataset.design) || 402;
+      screen.style.zoom = width / design;
+    });
   };
 
   /* requestAnimationFrame evita recalcular varias veces por cuadro durante el resize */

@@ -52,6 +52,25 @@ body {
   position: absolute;
 }
 
+/* ---------- Móvil y escritorio ----------
+   Cada página puede tener dos marcos: .screen.mobile (402px) y .screen.desktop (1440px).
+   Hasta 768px se ve el móvil; arriba de 768px se ve el de escritorio.
+   Si una página aún no tiene versión de escritorio, se sigue mostrando el móvil. */
+.screen.desktop {
+  display: none;
+  width: 1440px;
+}
+
+@media (min-width: 769px) {
+  .screen.desktop {
+    display: block;
+  }
+
+  body:has(.screen.desktop) .screen.mobile {
+    display: none;
+  }
+}
+
 /* ---------- Imágenes ---------- */
 .pic {
   position: absolute;
@@ -402,4 +421,261 @@ body {
   background: url('assets/journal/play.svg') center / 100% 100% no-repeat;
   cursor: pointer;
   z-index: 3;
+}
+
+/* ==========================================================
+   Versión de escritorio (marco de 1440px)
+   ========================================================== */
+.desktop .dbar {
+  position: absolute;
+  left: 0;
+  width: 1440px;
+  height: 88px;
+  background: var(--ink);
+}
+
+.desktop .dnav {
+  position: absolute;
+  top: 31px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 26px;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.desktop .dnav:hover {
+  text-decoration: underline;
+}
+
+.desktop .dsearch img {
+  left: 1px;
+  top: 1px;
+  width: 26px;
+  height: 26px;
+}
+
+.desktop .dtitle {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  font-size: 40px;
+  line-height: 1;
+  letter-spacing: .03em;
+}
+
+.desktop .dtitle.dark {
+  color: var(--ink);
+}
+
+.desktop .dtitle.light {
+  color: var(--paper);
+}
+
+.desktop .dpanel {
+  position: absolute;
+  background: var(--teal);
+  opacity: .8;
+  border-radius: 23px;
+}
+
+.desktop .dpanel.grey {
+  background: var(--grey-panel);
+  opacity: 1;
+}
+
+.desktop .dlead {
+  position: absolute;
+  transform: translateX(-50%);
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 22px;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+/* --- Journal --- */
+.desktop .djt {
+  position: absolute;
+  font-size: 58px;
+  line-height: 75px;
+  letter-spacing: .04em;
+  color: #fff;
+}
+
+.desktop .djsub {
+  position: absolute;
+  font-family: var(--font-body);
+  font-size: 24px;
+  color: #fff;
+}
+
+.desktop .dsoft {
+  position: absolute;
+  display: block;
+  text-decoration: none;
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 15px;
+  text-align: center;
+  line-height: 32px;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  background: rgba(20, 20, 20, .5);
+}
+
+.desktop .dsoft span::after {
+  content: " →";
+}
+
+.desktop .dcard {
+  position: absolute;
+  width: 393px;
+  height: 450px;
+  background: rgba(63, 90, 85, .92);
+  color: var(--ink);
+}
+
+.desktop .dcard.dark {
+  background: var(--ink);
+  color: #fff;
+}
+
+.desktop .dh {
+  position: absolute;
+  left: 25px;
+  right: 25px;
+  top: 252px;
+  font-size: 27px;
+  line-height: 1.1;
+  letter-spacing: .02em;
+}
+
+.desktop .dd {
+  position: absolute;
+  left: 25px;
+  right: 25px;
+  top: 342px;
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.25;
+}
+
+.desktop .dcard.dark .dh {
+  top: 252px;
+}
+
+.desktop .dcard.dark .dd {
+  top: 292px;
+}
+
+.desktop .dexp {
+  position: absolute;
+  left: 107px;
+  bottom: 18px;
+  width: 179px;
+  height: 36px;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  background: var(--teal-dark);
+  color: #fff;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 34px;
+  text-align: center;
+}
+
+.desktop .dexp span::after {
+  content: " →";
+}
+
+.desktop .djshop {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  font-size: 40px;
+  letter-spacing: .03em;
+  color: var(--paper);
+  font-weight: 200;
+  font-family: var(--font-title);
+}
+
+.desktop .djshopsub {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  font-family: var(--font-body);
+  font-size: 24px;
+  color: #fff;
+}
+
+/* --- World --- */
+.desktop .dname {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-family: var(--font-title-fill);
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.3;
+  color: #000;
+}
+
+.desktop .dread {
+  width: 177px;
+}
+
+.desktop .dread .book {
+  left: 142.9px;
+}
+
+/* --- Behind --- */
+.desktop .dbio-title {
+  position: absolute;
+  font-size: 44px;
+  line-height: 1;
+  letter-spacing: .03em;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.desktop .dbio {
+  position: absolute;
+  font-family: var(--font-body);
+  font-size: 21px;
+  line-height: 31px;
+  color: var(--ink);
+}
+
+.desktop .dbio p + p {
+  margin-top: 31px;
+}
+
+/* --- Making --- */
+.desktop .dpill {
+  position: absolute;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 333px;
+  height: 70px;
+  padding: 0 24px;
+  background: var(--teal);
+  border-radius: 23px;
+  text-align: center;
+  font-family: var(--font-title-fill);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.3;
+  letter-spacing: .03em;
+  color: var(--paper);
+}
+
+/* El hero de escritorio ya trae el texto en la imagen; el botón queda como zona clicable invisible */
+.desktop .dsoft.ghost {
+  border: 0;
+  background: none;
 }
